@@ -7,6 +7,7 @@ export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -26,6 +27,7 @@ export const Login = () => {
 
         if (data) {
             // should navigate to
+            navigate("/test")
             console.log("successful login")
         }
         
