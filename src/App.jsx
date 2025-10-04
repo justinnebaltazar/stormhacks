@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Login } from './components/Login/Login'
 import './App.css'
+import { ActivityTracker } from './components/ActivityTracker/ActivityTracker'
 
 function App() {
 
@@ -15,12 +16,18 @@ function App() {
         }>
 
         </Route>
+
         <Route path="/login"
         element={
-          
           <Login/>
         }>
+        </Route>
 
+        <Route path="/test"
+          element={
+            <ActivityTracker/>
+          }>
+            
         </Route>
       </Routes>
     </BrowserRouter>
