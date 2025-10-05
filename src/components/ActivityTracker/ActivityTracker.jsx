@@ -21,43 +21,75 @@ export const ActivityTracker = () => {
     };
 
     const handleSubmitActivity = async () => {
+        if (!selectedActivity) {
+            setMessage("Please select an activity first.");
+            return;
+        }
+
         setMessage("");
 
-        if (!selectedActivity) {
-            setMessage("select an activity");
-            return;
-        }
-
-        // get current user
+        // get the current user
         const { data: { user }, error: userError } = await supabase.auth.getUser();
-        if (userError) {
+        if (userError || !user) {
             console.error(userError);
-            setMessage("error fetching user");
+            setMessage("You must be logged in to log an activity.");
             return;
         }
 
-        if (!user) {
-            setMessage("you must be logged in to log an activity");
+        const userId = user.id;
+
+        // find the selected activity
+        const activity = activitiesList.find(a => a.id === parseInt(selectedActivity));
+        if (!activity) {
+            setMessage("Invalid activity selected.");
             return;
         }
 
-        // insert activity
-        const { error: insertError } = await supabase.from("user_activities").insert([
-            {
-                user_id: user.id,
-                activity_id: selectedActivity,
+        // insert into user_activities table
+        const { error: insertError } = await supabase
+            .from("user_activities")
+            .insert([{
+                user_id: userId,
+                activity_id: activity.id,
                 logged_at: new Date().toISOString(),
-            },
-        ]);
+            }]);
 
         if (insertError) {
             console.error(insertError);
-            setMessage("error logging selected activity");
-        } else {
-            setMessage("activity logged successfully!");
-            setSelectedActivity("");
+            setMessage("Error logging activity.");
+            return;
         }
+
+        // get points total
+        const { data: userPointsData, error: pointsError } = await supabase
+            .from("user_points")
+            .select("total_points")
+            .eq("user_id", userId)
+            .maybeSingle(); // changed single to maybeSingle
+
+        if (pointsError) {
+            console.error(pointsError);
+            setMessage("Error fetching user points.");
+            return;
+        }
+
+        const currentPoints = userPointsData?.total_points || 0;
+        const newTotal = currentPoints + activity.score;
+
+        // update or insert new points total
+        const { error: upsertError } = await supabase
+            .from("user_points")
+            .upsert({ user_id: userId, total_points: newTotal });
+
+        if (upsertError) {
+            console.error(upsertError);
+            setMessage("Error updating user points.");
+            return;
+        }
+
+        setMessage(`Activity logged! +${activity.score} points added (total: ${newTotal}).`);
     };
+
 
     return (
         <div className={styles.container}>
@@ -66,7 +98,7 @@ export const ActivityTracker = () => {
                 <select value={selectedActivity} onChange={handleSelectActivity}>
                     <option value="">Select an activity...</option>
                     {activitiesList.map((action) => (
-                        <option key={action.id} value={action.id}>
+                        <option key={`${action.id}-${action.name}`} value={action.id}>
                             {action.name} ({action.score})
                         </option>
                     ))}
