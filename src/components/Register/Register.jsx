@@ -8,7 +8,7 @@ export const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
-    const [username, setUsername] = useState("");
+    const [name, setName] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
@@ -20,7 +20,7 @@ export const Register = () => {
             password: password,
             options: {
                 data: {
-                    display_name: username,
+                    display_name: name,
                 },
                 emailRedirectTo: "http://localhost:5173/login", // temporary link
             },
@@ -31,6 +31,12 @@ export const Register = () => {
             return;
         }
 
+        if (data.user) {
+            await supabase
+                .from("profiles")
+                .insert([{ user_id: data.user.id, display_name: name }]);
+        }
+
         if (data) {
             alert("User account created!");
             navigate("/login");
@@ -38,7 +44,7 @@ export const Register = () => {
 
         setEmail("");
         setPassword("");
-        setUsername("");
+        setName("");
     };
 
     return (
@@ -47,6 +53,15 @@ export const Register = () => {
             <div className={styles.formBox}>
                 <form onSubmit={handleSubmit} className={styles.form}>
                     <h2 className={styles.heading}>Create an account!</h2>
+
+                    <input
+                        className={styles.input}
+                        onChange={(e) => setName(e.target.value)}
+                        value={name}
+                        type="text"
+                        placeholder="Name"
+                        required
+                    />
                     
                     <input
                         className={styles.input}
@@ -54,15 +69,6 @@ export const Register = () => {
                         value={email}
                         type="email"
                         placeholder="Email"
-                        required
-                    />
-
-                    <input
-                        className={styles.input}
-                        onChange={(e) => setUsername(e.target.value)}
-                        value={username}
-                        type="text"
-                        placeholder="Username"
                         required
                     />
 
