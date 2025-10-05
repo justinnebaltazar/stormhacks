@@ -8,6 +8,7 @@ import { Taskbar } from './components/Taskbar/Taskbar';
 import { Footer } from './components/Footer/Footer'
 import Wrapper from './components/Wrapper/Wrapper'
 import { Garden } from './components/Garden/Garden'
+import { About } from './components/About/About'
 
 function App() {
 
@@ -21,7 +22,16 @@ function App() {
           <Home/>
           <Footer/>
           </>
-          
+        }>
+        </Route>
+
+        <Route path ='/about'
+        element={
+          <>
+          <Taskbar />
+          <About/>
+          <Footer/>
+          </>
         }>
         </Route>
 
