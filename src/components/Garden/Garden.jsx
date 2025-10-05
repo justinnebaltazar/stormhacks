@@ -1,6 +1,7 @@
 import styles from "./garden.module.css"
 import stand from "../../assets/stand.png"
 import pot from "../../assets/pots.png"
+import roof from "../../assets/roof.png"
 import flower1 from "../../assets/flower1.png"
 import flower2 from "../../assets/flower2.png"
 import flower3 from "../../assets/flower3.png"
@@ -52,33 +53,54 @@ export const Garden = () => {
 
     // get the number of flowers the user's unlocked
     // keep flower if user's total points is greater than the flower points
-    // if flower points is greater, add the empty pot image instead
-    const unlockedFlowers = flowers.map((f) => points >= f.points ? f.pic: pot)
+    // if flower points is greater, add the empty pot image instead while keeping the flower points
+    const unlockedFlowers = flowers.map(f => ({...f, img: points >= f.points ? f.pic : pot}))
 
+    // create a stands array to keep track of the flowers per stand
     const stands = []
     for (let i = 0; i < unlockedFlowers.length; i += 2) {
         // add two into an array
         stands.push(unlockedFlowers.slice(i, i+2))
     }
+
     return (
        <div className={styles.container}>
-        {/* header */}
-        <div>
-            <h1>My Garden</h1>
-            <p>Earn points and use them to unlock cute plants!</p>
+        <div className={styles.roofContainer}>
+            {/* header */}
+            <div className={styles.header}>
+                <h1 className={styles.title}>My Garden</h1>
+                <p className={styles.text}>Earn points and use them to unlock cute plants!</p>
+            </div>
+            <img className={styles.roof} src={roof} alt=""/>
         </div>
 
         {/* map the achievements */}
-        <div>
+        <div className={styles.mapContainer}>
             {stands.map((standFlowers, index) => (
-                <div key={index}>
-                    <img src={stand} alt="stand"/>
+                <div className={styles.standContainer} key={index}>
+                    
+                    {/* map each flower */}
+                    <div className={styles.flowermapContainer}>
+                        {standFlowers.map((flower, i) => {
+                            // if flower image is pot, then flower is locked
+                            const isLocked = flower.img === pot
+                            return (
+                                <div className={styles.flowerContainer} key={i}>
+                                    <img className={styles.flower} key={i} src={flower.img} alt={"unlocked flowers"}/>
 
-                    <div>
-                        {standFlowers.map((flower, i) => (
-                            <img key={i} src={flower} alt={"unlocked flowers"}/>
-                        ))}
+                                    {/* display the amount of points needed to unlock the flower */}
+                                    {isLocked && (
+                                
+                                        <p className={styles.hiddenText}>earn {flower.points - points} more points to unlock!</p>
+                                    )}
+                                </div>
+                            )
+                        })}
                     </div>
+                    
+                    {/* stand image */}
+                    <img className={styles.stand} src={stand} alt="stand"/>
+
                 </div>
             ))}
         </div>
