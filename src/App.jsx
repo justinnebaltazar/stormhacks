@@ -13,11 +13,14 @@ function App() {
 
   return (
     <BrowserRouter>
-    <Taskbar />
       <Routes>
         <Route path ='/home'
         element={
+          <>
+          <Taskbar />
           <Home/>
+          </>
+          
         }>
         </Route>
 
