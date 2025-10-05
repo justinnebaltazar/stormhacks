@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import supabase from "../../helper/supabaseClient"
 import { getUserScores } from "../../helper/getScores"
 import { useNavigate } from "react-router-dom"
+import styles from "../Leaderboard/Leaderboard.module.css"
 
 export const Leaderboard = () => {
     const [scores, setScores] = useState([])
@@ -28,8 +29,9 @@ export const Leaderboard = () => {
     
 
     return (
-        <div>
-            <h2>Your Leaderboard</h2>
+        <div className = {styles.container}>
+            <div className = {styles.box}>
+            <h2>Leaderboard</h2>
             {scores.length === 0 ? (
                 <p>Failed to fetch user scores or no users exist</p>
             ) : (
@@ -41,6 +43,7 @@ export const Leaderboard = () => {
                     ))}
                 </ul>
             )}
+            </div>
         </div>
     )
 }
