@@ -47,7 +47,9 @@ function App() {
 
         <Route path="/garden"
           element={
-            <Garden/>
+            <Wrapper>
+              <Garden/>
+            </Wrapper>
           }>
         </Route>
       </Routes>
