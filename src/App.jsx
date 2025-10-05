@@ -9,6 +9,7 @@ import { Footer } from './components/Footer/Footer'
 import Wrapper from './components/Wrapper/Wrapper'
 import { Garden } from './components/Garden/Garden'
 import { About } from './components/About/About'
+import { ActivityLog } from './components/ActivityLog/ActivityLog'
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
           element={
             <Wrapper>
                 <ActivityTracker/>
+                <ActivityLog/>
             </Wrapper>
           }>
         </Route>
