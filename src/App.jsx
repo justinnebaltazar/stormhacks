@@ -6,6 +6,7 @@ import './App.css'
 import { ActivityTracker } from './components/ActivityTracker/ActivityTracker'
 import { Taskbar } from './components/Taskbar/Taskbar';
 import { Footer } from './components/Footer/Footer'
+import Wrapper from './components/Wrapper/Wrapper'
 
 function App() {
 
@@ -27,7 +28,9 @@ function App() {
 
         <Route path="/test"
           element={
-            <ActivityTracker/>
+            <Wrapper>
+                <ActivityTracker/>
+            </Wrapper>
           }>
         </Route>
 
