@@ -31,3 +31,18 @@
   text-align: justify;
   line-height: 1.6;
 }
+
+.subtitle p {
+  margin: 0.25rem 0;   /* much smaller vertical spacing */
+  line-height: 1.4;    /* keeps it readable */
+}
+
+.list {
+  margin: 1rem 0;
+  padding-left: 1.2rem; /* indent bullets */
+}
+
+.list li {
+  margin-bottom: 0.5rem; /* reduce spacing between items */
+  line-height: 1.5;
+}
