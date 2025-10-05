@@ -8,5 +8,51 @@
   background-color: #f5f5f5;
   padding-top: 0px;           /* push content down from top */
   background: linear-gradient(180deg, #e8f5e9 0%, #ffffff 100%);
-    
+}
+
+/* style the button */
+.button {
+  height: 44px;                 /* same as select */
+  padding: 0 1.2rem;            /* horizontal padding */
+  border: none;
+  border-radius: 8px;
+  background-color: #4caf50;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-left: 5px;
+  font-family: inherit; 
+}
+.dropdown select:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.25);
+}
+
+.button:hover {
+  background-color: #43a047;
+}
+
+/* style the select */
+.dropdown select {
+  flex: 1;
+  height: 44px;                 /* match button height */
+  padding: 0 1rem;              /* horizontal padding only */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: transparent;
+  line-height: 1.2;             /* keep text vertically centered */
+  box-sizing: border-box;
+  font-family: inherit; 
+  box-shadow: none;
+ 
+}
+
+.dropdown h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 10px;
 }

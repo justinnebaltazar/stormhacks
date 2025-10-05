@@ -94,7 +94,7 @@ export const ActivityTracker = () => {
     return (
         <div className={styles.container}>
             <div className={styles.dropdown}>
-                <h2>Pick your eco-friendly activity!</h2>
+                <h2>Pick your eco-friendly activity</h2>
                 <select value={selectedActivity} onChange={handleSelectActivity}>
                     <option value="">Select an activity...</option>
                     {activitiesList.map((action) => (
@@ -109,7 +109,9 @@ export const ActivityTracker = () => {
                 </button>
                 {/* can remove later - just shows if activity was logged or not */}
                 {message && <p className={styles.message}>{message}</p>}
+                
             </div>
+            <p>Scroll down to see your recent activity log!</p>
         </div>
     );
 };

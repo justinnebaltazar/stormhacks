@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import supabase from "../../helper/supabaseClient"
 import { fetchUserActivities } from "../../helper/fetchActivities"
+import styles from "../ActivityLog/ActivityLog.module.css"
 
 export const ActivityLog = () => {
     const [loggedActivities, setLoggedActivities] = useState([])
@@ -26,7 +27,8 @@ export const ActivityLog = () => {
     }, [])
 
     return (
-        <div style={{ padding: "1rem" }}>
+        <div className={styles.container}>
+            <div className = {styles.box}>
             <h2>Your Recent Activities</h2>
             {loggedActivities.length === 0 ? (
                 <p>Complete your first activity!</p>
@@ -51,6 +53,7 @@ export const ActivityLog = () => {
                     ))}
                 </ul>
             )}
+            </div>
         </div>
     )
 }
