@@ -31,14 +31,6 @@ export const ActivityLog = () => {
             <div className = {styles.box}>
             <h2>Your Recent Activities</h2>
             {loggedActivities.length === 0 ? (
-                <p>Complete your first activity!</p>
-            ) : (
-                <p>
-                    You've completed {totalActivities}{" "}
-                    {loggedActivities.length === 1 ? "activity" : "activities"} 
-                </p>
-            )}
-            {loggedActivities.length === 0 ? (
                 <p>No activities logged yet</p>
             ) : (
                 <ul>
