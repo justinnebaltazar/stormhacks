@@ -7,6 +7,7 @@ import { ActivityTracker } from './components/ActivityTracker/ActivityTracker'
 import { Taskbar } from './components/Taskbar/Taskbar';
 import { Footer } from './components/Footer/Footer'
 import Wrapper from './components/Wrapper/Wrapper'
+import { Garden } from './components/Garden/Garden'
 
 function App() {
 
@@ -38,7 +39,12 @@ function App() {
           element={
             <Register/>
           }>
+        </Route>
 
+        <Route path="/garden"
+          element={
+            <Garden/>
+          }>
         </Route>
       </Routes>
       <Footer/>
