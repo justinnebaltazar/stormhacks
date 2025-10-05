@@ -6,6 +6,8 @@ import flower1 from "../../assets/flower1.png"
 import flower2 from "../../assets/flower2.png"
 import flower3 from "../../assets/flower3.png"
 import flower4 from "../../assets/flower4.png"
+import flower5 from "../../assets/flower5.png"
+import flower6 from "../../assets/flower6.png"
 import supabase from "../../helper/supabaseClient"
 import { useState, useEffect } from "react"
 
@@ -28,6 +30,14 @@ export const Garden = () => {
         {
             pic: flower4,
             points: 80
+        },
+        {
+            pic: flower5,
+            points: 100
+        },
+        {
+            pic: flower6,
+            points: 120
         }
     ];
 
