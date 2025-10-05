@@ -19,6 +19,7 @@ function App() {
           <>
           <Taskbar />
           <Home/>
+          <Footer/>
           </>
           
         }>
@@ -50,7 +51,7 @@ function App() {
           }>
         </Route>
       </Routes>
-      <Footer/>
+      
     </BrowserRouter>
   )
 }
