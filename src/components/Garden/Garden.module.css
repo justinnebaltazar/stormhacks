@@ -94,8 +94,8 @@
     align-items: center;
     position: absolute;
     font-family: 'Caveat';
-    top: 50%;         /* vertically centered */
-    left: 50%;        /* horizontally centered */
+    top: 50%;         
+    left: 50%;        
     transform: translate(-50%, -50%);
     font-size: 1rem;
     color: #6b4b3e;
