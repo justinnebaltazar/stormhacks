@@ -43,12 +43,11 @@ function App() {
         }>
         </Route>
 
-        <Route path="/test"
+        <Route path="/activity"
           element={
             <Wrapper>
                 <ActivityTracker/>
                 <ActivityLog/>
-                <Leaderboard/>
             </Wrapper>
           }>
         </Route>
