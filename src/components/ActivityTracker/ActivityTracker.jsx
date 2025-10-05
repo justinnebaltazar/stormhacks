@@ -111,7 +111,7 @@ export const ActivityTracker = () => {
                 {message && <p className={styles.message}>{message}</p>}
                 
             </div>
-            <p>Scroll down to see your recent activity log!</p>
+            <p>Scroll down to see your recent activity log and leaderboard!</p>
         </div>
     );
 };
