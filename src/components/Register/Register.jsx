@@ -52,7 +52,7 @@ export const Register = () => {
             {message && <p className={styles.message}>{message}</p>}
             <div className={styles.formBox}>
                 <form onSubmit={handleSubmit} className={styles.form}>
-                    <h2 className={styles.heading}>Create an account!</h2>
+                    <h2 className={styles.heading}>Create Account</h2>
 
                     <input
                         className={styles.input}
@@ -82,7 +82,7 @@ export const Register = () => {
                     />
 
                     <button className={styles.button} type="submit">
-                        Create Account
+                        Register
                     </button>
 
                     <p className={styles.footerText}>

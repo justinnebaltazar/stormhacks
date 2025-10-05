@@ -3,8 +3,9 @@
     min-height: 100vh;
     align-items: center;
     justify-content: center;
-    background: #f5f5f5;
+    background: #2c3e50;
     padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .message {
@@ -37,7 +38,8 @@
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
     font-weight: bold;
-    color: #064e3b; /* deep green */
+    color: #064e3b;
+    text-transform: uppercase;
 }
 
 .input {
@@ -48,7 +50,7 @@
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
     color: #111;
-    font-size: 1rem;
+    font-size: 18px;
 }
 
 .input::placeholder {
@@ -62,10 +64,11 @@
 }
 
 .button {
-    width: 100%;
+    width: 90%;
     margin-bottom: 1rem;
+    font-size: 20px;
     border: none;
-    background: #10b981;
+    background: #064e3b;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
     font-weight: bold;
@@ -75,12 +78,12 @@
 }
 
 .button:hover {
-  background: #04724f;
+  background: #08845d;
 }
 
 .footerText {
     text-align: center;
-    font-size: 0.85rem;
+    font-size: 18px;
     color: #555;
 }
 
@@ -92,5 +95,5 @@
 }
 
 .link:hover {
-    color: #10543d;
+    color: #08845d;
 }

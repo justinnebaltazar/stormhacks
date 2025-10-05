@@ -17,7 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path ='/home'
+        <Route path ='/'
         element={
           <>
           <Taskbar />
