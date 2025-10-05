@@ -10,6 +10,7 @@ import Wrapper from './components/Wrapper/Wrapper'
 import { Garden } from './components/Garden/Garden'
 import { About } from './components/About/About'
 import { ActivityLog } from './components/ActivityLog/ActivityLog'
+import { Leaderboard } from './components/Leaderboard/Leaderboard'
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
             <Wrapper>
                 <ActivityTracker/>
                 <ActivityLog/>
+                <Leaderboard/>
             </Wrapper>
           }>
         </Route>

@@ -1,54 +1,28 @@
 import { useEffect, useState } from "react"
 import supabase from "../../helper/supabaseClient"
+import { fetchUserActivities } from "../../helper/fetchActivities"
 
 export const ActivityLog = () => {
     const [loggedActivities, setLoggedActivities] = useState([])
     const [totalActivities, setTotalActivities] = useState(0)
 
     useEffect(() => {
-        async function fetchActivities() {
+        async function loadActivities() {
+            const { data: { user }, error: userError } = await supabase.auth.getUser(); 
 
-            // get current user
-            const { data: { user }, error: userError } = await supabase.auth.getUser();
+            if (userError || !user) {
+                alert("Please login first!")
+            } 
 
-            if (userError || !user ) {
-                console.error(userError);
-                alert("You must be logged in to log an activity.");
-                return;
-            }
-
-            const userId = user.id;
-
-            // fetch most recent 5 activities that were logged 
-            const { data, error } = await supabase
-                .from("user_activities")
-                .select(`
-                    id,
-                    logged_at,
-                    activities (
-                        name,
-                        category,
-                        score
-                    )
-                `)
-                .eq("user_id", userId)
-                .order("logged_at", { ascending: false })
-                .limit(5);
-            
-            const { data: listLength, error: listError } = await supabase
-                
-
-            if (error) {
-                console.error(error);
-                alert("Error fetching user activities");
-                return;
-            } else {
-                setTotalActivities(data.length)
+            try {
+                const data = await fetchUserActivities(user.id, 5);
                 setLoggedActivities(data);
+            } catch (err) {
+                alert("Failed to fetch activities.")
             }
             
         }
-        fetchActivities();
+        loadActivities();
     }, [])
 
     return (
